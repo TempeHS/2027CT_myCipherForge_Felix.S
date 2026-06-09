@@ -1,7 +1,7 @@
 """
 CipherForge — Encryption Engine
 ================================
-Author: [Your Name]
+Author: Felix M-S
 Date: 2026
 
 This file contains my custom 5-layer encryption algorithm.
@@ -17,40 +17,8 @@ RULES:
   - encrypt() MUST be reversible
   - decrypt(encrypt(message)) MUST return the original message
 """
-<<<<<<< HEAD
-def simple_shift(text, shift):
-    """
-    Shift every character by 'shift' positions.
-    
-    This is a simple Caesar cipher that works on ALL printable characters,
-    not just letters. It wraps around using modular arithmetic.
-    
-    Args:
-        text: The string to encrypt
-        shift: How many positions to shift (positive = forward)
-    
-    Returns:
-        The encrypted string
-    """
-    result = ""
-    
-    for char in text:
-        if 32 <= ord(char) <= 126:  # Printable ASCII range
-            # Convert to 0-94 range
-            position = ord(char) - 32
-            # Shift and wrap
-            new_position = (position + shift) % 95
-            # Convert back to character
-            result += chr(new_position + 32)
-        else:
-            # Keep non-printable characters unchanged
-            result += char
-    
-    return result
-=======
 
 
->>>>>>> c1a7034 (feature: add simple_shift and simple_unshift functions)
 # Your encryption code will go below this line!
 def phase1_encrypt(text, key):
     """
@@ -135,5 +103,40 @@ def encrypt(text, key):
 
     # TODO: Phase 5 — Wild Card
     # result = phase5_encrypt(result, key)
+
+    return result
+
+
+def decrypt(text, key):
+    """
+    CipherForge Master Decryption — Reverses all 5 phases.
+
+    IMPORTANT: Phases must be reversed in OPPOSITE order!
+    Encrypt: 1 → 2 → 3 → 4 → 5
+    Decrypt: 5 → 4 → 3 → 2 → 1
+
+    Args:
+        text: The encrypted text
+        key: Same key used for encryption
+
+    Returns:
+        Original plaintext
+    """
+    result = text
+
+    # TODO: Phase 5 — Reverse Wild Card (first!)
+    # result = phase5_decrypt(result, key)
+
+    # TODO: Phase 4 — Reverse Noise Injection
+    # result = phase4_decrypt(result, key)
+
+    # TODO: Phase 3 — Reverse Key-Dependent
+    # result = phase3_decrypt(result, key)
+
+    # TODO: Phase 2 — Reverse Transposition
+    # result = phase2_decrypt(result, key)
+
+    # Phase 1: Reverse Substitution (last!)
+    result = phase1_decrypt(result, key)
 
     return result
