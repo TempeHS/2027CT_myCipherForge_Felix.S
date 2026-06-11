@@ -252,3 +252,52 @@ def phase3_decrypt(text, key):
             result += char
 
     return result
+
+
+###############################################
+# PHASE 4: NOISE INJECTION
+###############################################
+
+
+def encrypt(plaintext, key):
+    """Apply all encryption phases in sequence."""
+    result = plaintext
+
+    # Phase 1: Substitution (shift all characters)
+    result = phase1_encrypt(result, key)
+
+    # Phase 2: Transposition (reverse blocks)
+    result = phase2_encrypt(result, key)
+
+    # Phase 3: Key-dependent (password-based variable shift)
+    result = phase3_encrypt(result, key)
+
+    # Phase 4: Noise injection (add decoy characters)
+    result = phase4_encrypt(result, key)
+
+    # TODO: Phase 5 - Wild Card (your invention!)
+
+    return result
+
+
+def decrypt(ciphertext, key):
+    """Reverse all encryption phases."""
+    result = ciphertext
+
+    # Decrypt in REVERSE order!
+
+    # TODO: Phase 5 - Wild Card (your invention!)
+
+    # Phase 4: Remove noise characters
+    result = phase4_decrypt(result, key)
+
+    # Phase 3: Reverse password-based shift
+    result = phase3_decrypt(result, key)
+
+    # Phase 2: Reverse transposition (self-inverse)
+    result = phase2_decrypt(result, key)
+
+    # Phase 1: Reverse substitution (shift back)
+    result = phase1_decrypt(result, key)
+
+    return result
