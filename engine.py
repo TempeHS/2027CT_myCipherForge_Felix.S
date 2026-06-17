@@ -304,7 +304,9 @@ def phase5_encrypt(text, key):
 
 def phase5_decrypt(text, key):
     """shift the numbers by three based on the same parity rules. Then, convert to text."""
-    decrypted_list = [chr(c - 3) if c % 2 != 0 else chr(c + 3) for c in text]
+    decrypted_list = [
+        chr(ord(c) - 3) if ord(c) % 2 != 0 else chr(ord(c) + 3) for c in text
+    ]
 
     result = decrypted = "".join(decrypted_list)
 
